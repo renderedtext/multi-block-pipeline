@@ -1,9 +1,23 @@
-version: "v1.0"
+version: "v3.0"
 name: 2 blocks test in prod
 semaphore_image: standard
 blocks:
   - build:
       jobs:
-        - commands:
+        - name: Job from 1st block
+          commands:
             - echo foo
             - echo bar
+  - build:
+      jobs:
+        - name: Job from 2st block
+          commands:
+            - echo foo2
+            - "false"
+            - echo bar2
+  - build:
+      jobs:
+        - name: Job from 3st block
+          commands:
+            - echo foo3
+            - echo bar3
