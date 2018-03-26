@@ -1,0 +1,9 @@
+version: "v1.0"
+name: 2 blocks test in prod
+semaphore_image: standard
+blocks:
+  - build:
+      jobs:
+        - commands:
+            - echo foo
+            - echo bar
