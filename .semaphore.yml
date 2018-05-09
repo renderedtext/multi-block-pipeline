@@ -7,7 +7,7 @@ blocks:
         - name: Job from 1st block
           commands:
             - echo foo
-            - echo bar
+            - echo $SEMAPHORE_PIPELINE_ID
   - build:
       jobs:
         - name: Job from 2st block
