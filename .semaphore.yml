@@ -12,7 +12,7 @@ blocks:
       jobs:
         - name: Job from 2st block
           commands:
-            - echo foo2
+            - echo $PPL_ID
             - "false"
             - echo bar2
   - build:
