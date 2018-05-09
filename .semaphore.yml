@@ -6,7 +6,7 @@ blocks:
       jobs:
         - name: Job from 1st block
           commands:
-            - echo foo
+            - echo $PPL_ID
             - echo $SEMAPHORE_PIPELINE_ID
   - build:
       jobs:
