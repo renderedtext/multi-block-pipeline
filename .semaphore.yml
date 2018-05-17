@@ -8,6 +8,7 @@ blocks:
           commands:
             - echo $SEMAPHORE_PIPELINE_ID
         - name: 2nd job from 1st block
+          commands:
             - echo This is from second job
   - build:
       jobs:
