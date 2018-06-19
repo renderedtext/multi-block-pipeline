@@ -1,3 +1,4 @@
+
 version: "v1.0"
 name: Basic, 3 blocks YAML file example. Only first 2 blocks will be executed because second block will fail.
 semaphore_image: standard
@@ -5,8 +6,12 @@ blocks:
   - build:
       jobs:
         - name: Job from 1st block
+          env_vars:
+          - name: FOO
+            value: "123"
           commands:
             - echo $SEMAPHORE_PIPELINE_ID
+            - echo $FOO
         - name: 2nd job from 1st block
           commands:
             - echo This is from second job
