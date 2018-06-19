@@ -13,8 +13,13 @@ blocks:
             - echo $SEMAPHORE_PIPELINE_ID
             - echo $FOO
         - name: 2nd job from 1st block
+          matrix:
+            - env_var: ELIXIR
+              values: ["1.3", "1.4", "1.5"]
+
           commands:
             - echo This is from second job
+            - echo $ELIXIR
   - build:
       jobs:
         - name: Job from 2nd block
