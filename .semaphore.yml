@@ -11,6 +11,7 @@ blocks:
           commands:
             - echo $SEMAPHORE_PIPELINE_ID
             - echo $FOO
+            - sleep 150
         - name: 2nd job from 1st block
           matrix:
             - env_var: ELIXIR
