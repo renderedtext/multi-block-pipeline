@@ -20,14 +20,14 @@ blocks:
           commands:
             - echo This is from second job
             - echo $ELIXIR
-  - build:
+  - task:
       jobs:
         - name: Job from 2nd block
           commands:
             - echo $SEMAPHORE_PIPELINE_ID
 #            - "false"
             - echo bar2
-  - build:
+  - task:
       jobs:
         - name: Job from 3rd block
           commands:
