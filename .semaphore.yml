@@ -1,4 +1,4 @@
-version: "v1.0"
+version: "v1.0-beta-task"
 name: Basic, 3 blocks YAML file example. Only first 2 blocks will be executed because second block will fail.
 semaphore_image: standard
 blocks:
