@@ -1,6 +1,9 @@
-version: "v1.0-beta-task"
+version: "v1.0"
 name: Basic, 3 blocks YAML file example. Only first 2 blocks will be executed because second block will fail.
-semaphore_image: standard
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
 blocks:
   - task:
       jobs:
