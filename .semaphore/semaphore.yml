@@ -9,7 +9,7 @@ blocks:
     dependencies: []
     task:
       jobs:
-        - commands: [echo foo]
+        - commands: [echo foo, sleep 15]
   - name: B
     dependencies: [A, D]
     task:
@@ -24,5 +24,5 @@ blocks:
     dependencies: []
     task:
       jobs:
-        - commands: [echo D]
+        - commands: [echo D, sleep 12]
 
