@@ -1,38 +1,28 @@
-version: "v1.0"
-name: Basic, 3 blocks YAML file example. Only first 2 blocks will be executed because second block will fail.
+version: v1.0
+name: Free topology pipeline - valid
 agent:
   machine:
-    type: e1-standard-2
-    os_image: ubuntu1804
+    type: foo
+    os_image: bar
 blocks:
-  - task:
+  - name: A
+    dependencies: []
+    task:
       jobs:
-        - name: Job from 1st block
-          env_vars:
-          - name: FOO
-            value: "123"
-          commands:
-            - echo $SEMAPHORE_PIPELINE_ID
-            - echo $FOO
-            - sleep 250
-        - name: 2nd job from 1st block
-          matrix:
-            - env_var: ELIXIR
-              values: ["1.3", "1.4", "1.5"]
+        - commands: [echo foo]
+  - name: B
+    dependencies: [A, D]
+    task:
+      jobs:
+        - commands: [echo bar]
+  - name: C
+    dependencies: [B]
+    task:
+      jobs:
+        - commands: [echo baz]
+  - name: D
+    dependencies: []
+    task:
+      jobs:
+        - commands: [echo D]
 
-          commands:
-            - echo This is from second job
-            - echo $ELIXIR
-  - task:
-      jobs:
-        - name: Job from 2nd block
-          commands:
-            - echo $SEMAPHORE_PIPELINE_ID
-#            - "false"
-            - echo bar2
-  - task:
-      jobs:
-        - name: Job from 3rd block
-          commands:
-            - echo foo3
-            - echo bar3
