@@ -6,7 +6,7 @@ agent:
     os_image: bar
 blocks:
   - name: B
-    dependencies: [A, D]
+    dependencies: []
     task:
       jobs:
         - commands: [echo bar]
