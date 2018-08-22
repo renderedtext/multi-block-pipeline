@@ -6,6 +6,5 @@ agent:
     os_image: bar
 blocks:
   - name: D
-    dependencies: []
     task_file: waiting_task.yml
 
