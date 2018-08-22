@@ -7,7 +7,7 @@ agent:
 blocks:
   - name: A
     dependencies: []
-    task_file: waiting_task.yml
+    task_file: waiting_task.yml2
   - name: B
     dependencies: [A, D]
     task:
