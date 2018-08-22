@@ -7,9 +7,7 @@ agent:
 blocks:
   - name: A
     dependencies: []
-    task:
-      jobs:
-        - commands: [date, sleep 15, date]
+    task_file: waiting_task.yml
   - name: B
     dependencies: [A, D]
     task:
@@ -22,7 +20,5 @@ blocks:
         - commands: [echo baz]
   - name: D
     dependencies: []
-    task:
-      jobs:
-        - commands: [date, sleep 15, date]
+    task_file: waiting_task.yml
 
