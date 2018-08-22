@@ -8,17 +8,3 @@ blocks:
   - name: A
     dependencies: []
     task_file: waiting_task.yml2
-  - name: B
-    dependencies: [A, D]
-    task:
-      jobs:
-        - commands: [echo bar]
-  - name: C
-    dependencies: [B]
-    task:
-      jobs:
-        - commands: [echo baz]
-  - name: D
-    dependencies: []
-    task_file: waiting_task.yml
-
