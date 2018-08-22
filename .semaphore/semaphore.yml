@@ -5,6 +5,8 @@ agent:
     type: foo
     os_image: bar
 blocks:
-  - name: A
-    dependencies: []
-    task_file: waiting_task.yml2
+  - name: B
+    dependencies: [A, D]
+    task:
+      jobs:
+        - commands: [echo bar]
