@@ -7,4 +7,6 @@ agent:
 blocks:
   - name: D
     task_file: waiting_task.yml
+  - name: A
+    task_file: waiting_task.yml
 
