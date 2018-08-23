@@ -1,3 +1,4 @@
  jobs:
- - commands: [date, sleep 15, date]
+ - name: Job from waiting task
+   commands: [date, sleep 15, date]
 
