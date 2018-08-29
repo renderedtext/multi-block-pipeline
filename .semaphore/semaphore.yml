@@ -25,4 +25,9 @@ blocks:
     task:
       jobs:
         - commands: [echo D, sleep 12]
+  - name: E
+    dependencies: [B]
+    task:
+      jobs:
+        - commands_file: commands.txt
 
