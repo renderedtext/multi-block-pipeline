@@ -1,7 +1,7 @@
- version: v1.0
+version: v1.0
 name: Free topology pipeline - valid
 agent:
-  machine:
+  machines:
     type: foo
     os_image: bar
 blocks:
