@@ -9,7 +9,7 @@ blocks:
     dependencies: []
     task:
       jobs:
-        - commands: [echo foo, sleep 15]
+        - commands: [echo $SEMAPHORE_WORKFLOW_ID, sleep 15]
   - name: B
     dependencies: [A, D]
     task:
