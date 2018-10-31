@@ -1,33 +1,17 @@
 version: v1.0
-name: Free topology pipeline - valid
+name: Snapshot test
 agent:
   machine:
-    type: foo
-    os_image: bar
-blocks:
-  - name: A
-    dependencies: []
-    task:
-      jobs:
-        - commands: [echo $SEMAPHORE_WORKFLOW_ID, sleep 15]
-  - name: B
-    dependencies: [A, D]
-    task:
-      jobs:
-        - commands: [echo bar]
-  - name: C
-    dependencies: [B]
-    task:
-      jobs:
-        - commands: [echo baz]
-  - name: D
-    dependencies: []
-    task:
-      jobs:
-        - commands: [echo D, sleep 12]
-  - name: E
-    dependencies: [B]
-    task:
-      jobs:
-        - commands_file: commands.txt
+    type: e1-standard-2
+    os_image: ubuntu1804
 
+blocks:
+  - name: "Toolbox"
+    dependencies: []
+    task:
+      jobs:
+      - name: "Develop toolbox checkout"
+        commands:
+          - checkout
+          - source .semaphore/libcheckout
+          - checkout
