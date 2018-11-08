@@ -2,27 +2,24 @@ version: v1.0
 name: Free topology pipeline - valid
 agent:
   machine:
-    type: foo
-    os_image: bar
+    type: e1-standard-2
+    os_image: ubuntu1804
+
 blocks:
   - name: A
     dependencies: []
     task:
       jobs:
-        - commands: [echo foo, sleep 15]
-  - name: B
-    dependencies: [A, D]
-    task:
-      jobs:
-        - commands: [echo bar]
-  - name: C
-    dependencies: [B]
-    task:
-      jobs:
-        - commands: [echo baz]
+        - commands: 
+            - echo $SEMAPHORE_PIPELINE_ID
+            - echo $SEMAPHORE_PIPELINE_0_ARTEFACT_ID
   - name: D
     dependencies: []
     task:
       jobs:
-        - commands: [echo D, sleep 12]
+        - commands: [echo D, sleep 1]
+
+promotions:
+  - name: Deploy to nowhere
+    pipeline_file: test.yml
 

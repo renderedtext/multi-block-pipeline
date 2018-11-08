@@ -1,0 +1,14 @@
+version: v1.0
+name: Promotion test
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+
+blocks:
+  - name: A
+    task:
+      jobs:
+        - commands: 
+            - echo foo
+            - echo $SEMAPHORE_PIPELINE_0_ARTEFACT_ID
