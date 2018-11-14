@@ -12,6 +12,6 @@ blocks:
       jobs:
       - name: "Develop toolbox checkout"
         commands:
-          - checkout
+          - fail
           - source .semaphore/libcheckout
           - checkout

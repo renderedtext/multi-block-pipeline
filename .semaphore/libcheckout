@@ -1,9 +1,14 @@
 function checkout() {
-  echo perfa
   echo SEMAPHORE_SNAPSHOT_ID: $SEMAPHORE_SNAPSHOT_ID
   if [ -n "$SEMAPHORE_SNAPSHOT_ID" ]; then
-    curl
-    exit 1
+    mkdir -p ~/snapshot
+    cd ~/snapshot
+
+    curl https://semaphore.semaphoreci.com/api/v1alpha/snapshots/$SEMAPHORE_SNAPSHOT_ID \
+      -H "Authorization: Token omsAfx8Ly51RJ127xX6c" | \
+      tar xzf -
+
+    return 0
   fi
 
   if [ -z $SEMAPHORE_GIT_BRANCH ] || [ -z $SEMAPHORE_GIT_URL ] || [ -z $SEMAPHORE_GIT_DIR ] || [ -z $SEMAPHORE_GIT_SHA ]; then
