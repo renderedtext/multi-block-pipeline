@@ -14,4 +14,3 @@ blocks:
         commands:
           - fail
           - source .semaphore/libcheckout
-          - checkout
