@@ -1,30 +1,25 @@
 version: v1.0
-name: Snapshot test
+name: Multiple pipelines
 agent:
   machine:
     type: e1-standard-2
     os_image: ubuntu1804
 
 blocks:
-  - name: "Toolbox"
-    dependencies: []
+  - name: Dummy
     task:
       jobs:
-      - name: "Develop toolbox checkout"
+      - name: dummy
         commands:
           - echo foo
-      - name: matrix job
-        commands:
-            - echo $ELIXIR
-            - echo $ERLANG
-            - echo $SEMAPHORE
-            - if [[ "$ELIXIR" != "1.3" && "$ELIXIR" != "1.4" ]]; then echo "ooooops..." ; exit 127; fi
-            - if [[ "$ERLANG" != "19" && "$ERLANG" != "20" ]]; then exit 127 ; else exit 0; fi
-            - if [[ "$SEMAPHORE" != "v1.0" && "$SEMAPHORE" != "v2.0" ]]; then exit 127 ; else exit 0; fi
-        matrix:
-            - env_var: ELIXIR
-              values: ["1.3", "1.4"]
-            - env_var: ERLANG
-              values: ["19", "20"]
-            - env_var: SEMAPHORE
-              values: ["v1.0", "v2.0"]
+
+promotions:
+  - name: Run front-end pipeline
+    pipeline_file: front.yml
+    auto_promote_on:
+      - result: passed
+  - name: Run back-end pipeline
+    pipeline_file: back.yml
+    auto_promote_on:
+      - result: passed
+
