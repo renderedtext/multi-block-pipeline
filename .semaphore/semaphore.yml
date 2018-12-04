@@ -1,25 +1,39 @@
 version: v1.0
-name: Multiple pipelines
+name: Free topology pipeline
 agent:
   machine:
     type: e1-standard-2
     os_image: ubuntu1804
 
 blocks:
-  - name: Dummy
+  - name: Front-end test - phase 1
+    dependencies: []
     task:
       jobs:
-      - name: dummy
+      - name: A job
         commands:
           - echo foo
-
-promotions:
-  - name: Run front-end pipeline
-    pipeline_file: front.yml
-    auto_promote_on:
-      - result: passed
-  - name: Run back-end pipeline
-    pipeline_file: back.yml
-    auto_promote_on:
-      - result: passed
-
+          - sleep 30
+  - name: Front-end test - phase 2
+    dependencies: ["Front-end test - phase 1"]
+    task:
+      jobs:
+      - name: A job
+        commands:
+          - echo foo
+          - sleep 45
+  - name: Back-end test - phase 1
+    dependencies: []
+    task:
+      jobs:
+      - name: A job
+        commands:
+          - echo foo
+          - sleep 60
+  - name: Back-end test - phase 2
+    dependencies: ["Back-end test - phase 1"]
+    task:
+      jobs:
+      - name: A job
+        commands:
+          - echo foo
