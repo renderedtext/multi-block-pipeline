@@ -6,34 +6,26 @@ agent:
     os_image: ubuntu1804
 
 blocks:
-  - name: Front-end test - phase 1
+  - name: Block 1
     dependencies: []
     task:
       jobs:
-      - name: A job
-        commands:
-          - echo foo
-          - sleep 30
-  - name: Front-end test - phase 2
-    dependencies: ["Front-end test - phase 1"]
-    task:
-      jobs:
-      - name: A job
+      - name: job
         commands:
           - echo foo
           - sleep 45
-  - name: Back-end test - phase 1
+  - name: Block 2
     dependencies: []
     task:
       jobs:
-      - name: A job
+      - name: job
         commands:
           - echo foo
-          - sleep 60
-  - name: Back-end test - phase 2
-    dependencies: ["Back-end test - phase 1"]
+          - sleep 30
+  - name: Block 3
+    dependencies: ["Block 1", "Block 2"]
     task:
       jobs:
-      - name: A job
+      - name: job
         commands:
           - echo foo
