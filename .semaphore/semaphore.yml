@@ -5,6 +5,15 @@ agent:
     type: e1-standard-2
     os_image: ubuntu1804
 
+global_job_config:
+  prologue:
+    commands:
+    - echo Global prologue
+    - echo Env var from global config $glob_env
+  env_vars:
+  - name: glob_env
+    value: this is glob value
+
 blocks:
   - name: Block 1
     dependencies: []
