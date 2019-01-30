@@ -1,28 +1,19 @@
 version: v1.0
-name: Free topology pipeline - valid
+name: Run on master only
 agent:
   machine:
-    type: foo
-    os_image: bar
+    type: e1-standard-2
+    os_image: ubuntu1804
+
 blocks:
-  - name: A
-    dependencies: []
+  - name: First block
     task:
       jobs:
-        - commands: [echo foo, sleep 15]
+        - commands:
+            - if [ "$SEMAPHORE_GIT_BRANCH" != "master" ]; then false; fi
   - name: B
-    dependencies: [A, D]
     task:
       jobs:
-        - commands: [echo bar]
-  - name: C
-    dependencies: [B]
-    task:
-      jobs:
-        - commands: [echo baz]
-  - name: D
-    dependencies: []
-    task:
-      jobs:
-        - commands: [echo D, sleep 12]
+        - commands:
+            -  echo executing on master...
 
