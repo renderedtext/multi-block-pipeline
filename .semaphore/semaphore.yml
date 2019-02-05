@@ -1,19 +1,29 @@
 version: v1.0
-name: Run on master only
+name: Filter
 agent:
   machine:
     type: e1-standard-2
     os_image: ubuntu1804
 
 blocks:
-  - name: First block
+  - name: Only on master
+    filters:
+# First rule whose label matches is consumed. Only one rule is consumed.
+      - label: master
+        action: execute
+# Default action is "execute" so this is a kind of "user defind default"
+      - label_pattern: ".*"
+        action: skip
     task:
       jobs:
         - commands:
-            - if [ "$SEMAPHORE_GIT_BRANCH" != "master" ]; then false; fi
-  - name: B
+            - echo on the master
+  - name: All but master
+    filters:
+      - label: master
+        action: skip
     task:
       jobs:
         - commands:
-            -  echo executing on master...
+            -  echo executing on non-master...
 
