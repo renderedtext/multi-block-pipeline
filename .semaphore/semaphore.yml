@@ -1,29 +1,22 @@
 version: v1.0
-name: Filter
+name: Tag based deploy
 agent:
   machine:
     type: e1-standard-2
     os_image: ubuntu1804
 
 blocks:
-  - name: Only on master
-    filters:
-# First rule whose label matches is consumed. Only one rule is consumed.
-      - label: master
-        action: execute
-# Default action is "execute" so this is a kind of "user defind default"
-      - label_pattern: ".*"
-        action: skip
+  - name: Build and test
     task:
       jobs:
         - commands:
-            - echo on the master
-  - name: All but master
-    filters:
-      - label: master
-        action: skip
-    task:
-      jobs:
-        - commands:
-            -  echo executing on non-master...
+            - echo Build and test...
+
+promotions:
+  - name: Deploy to prod on tag
+    pipeline_file: prod.yml
+    auto_promote_on:
+      - result: passed
+        label_patterns:
+          - refs/tags/v.*
 
